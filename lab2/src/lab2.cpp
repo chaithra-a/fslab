@@ -16,6 +16,8 @@
 
 #include <iostream>
 #include<fstream>
+#include<stdlib.h>
+#include<string.h>
 using namespace std;
 class student
 {
@@ -23,6 +25,7 @@ class student
 public:
 	void read();
 	void pack();
+	void write();
 	void unpack();
 };
 fstream fp;
@@ -36,21 +39,34 @@ void student::read(void)
 void student::pack(void)
 {
 	string buffer;
-	buffer=usn+"|"+name+"|"+sem;
+	buffer=usn+'|'+name+'|'+sem;
 	buffer.resize(100,'$');
 	fp<<buffer;
 }
+void student::write()
+{
+	string buffer;
+  fstream f1;
+  f1.open("2a.txt",ios::out|ios::app);
+  f1<<buffer;
+  f1.close();
+ }
 void student::unpack(void)
 {
-	string extra;
-	fp.open("f.txt",ios::in);
-	getline(fp,usn,'|');
-	cout<<usn;
-	getline(fp,name,'|');
-	cout<<name;
-	getline(fp,sem,'|');
-	getline(fp,extra);
-}./workspace/lab2/src/lab2.cpp
+	int i=0,buffer;
+	while(!buffer[i]='|')
+		{
+		 usn+=buffer[i++];
+		}
+	     i++;
+		 while(!buffer[i]='|')
+		 {
+			 name+=buffer[i++];
+		 }
+		 while(!buffer[i]='|')
+			 sem+=buffer[i++];
+		 i++;
+		}
 int main()
 {
 	student s1;
@@ -68,6 +84,7 @@ switch(ch)
 	   cout<<"not opened";
        }
       s1.pack();
+      s1.write();
        fp.close();
        break;
  case 3:s1.unpack();
