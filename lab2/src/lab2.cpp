@@ -21,14 +21,18 @@
 using namespace std;
 class student
 {
-	string  usn,sem,name;
+	string  usn,name;
+	int sem;
 public:
 	void read();
-	void pack();
 	void write();
+	void pack();
 	void unpack();
+	void search(string);
+	void display();
 };
 fstream fp;
+ string key;
 void student::read(void)
 {
     cout<<"enter the student usn,name,sem"<<endl;
@@ -54,16 +58,16 @@ void student::write()
 void student::unpack(void)
 {
 	int i=0,buffer;
-	while(!buffer[i]='|')
+	while(buffer[i]!='|')
 		{
 		 usn+=buffer[i++];
 		}
 	     i++;
-		 while(!buffer[i]='|')
+		 while(buffer[i]!='|')
 		 {
 			 name+=buffer[i++];
 		 }
-		 while(!buffer[i]='|')
+		 while(buffer[i]!='|')
 			 sem+=buffer[i++];
 		 i++;
 		}
